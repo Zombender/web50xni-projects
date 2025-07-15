@@ -1,0 +1,22 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia
+{% endblock %}
+
+{% block body %}
+    {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+    <h2>Edit entry: {{ title }}</h2>
+    <form class="create-entry-form" action="{% url 'edit-entry-point' title%}" method="post">
+        {% csrf_token %}
+        <div class="create-entry">
+            <label for="content">Content</label>
+            <textarea id="content" name="c" >{{ content|default:'' }}</textarea>
+        </div>
+        <input type="submit" value="Confirm changes">
+    </form>
+{% endblock %}
