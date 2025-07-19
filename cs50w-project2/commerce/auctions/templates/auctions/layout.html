@@ -1,0 +1,64 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}Auctions{% endblock %}</title>
+    <link href="{% static 'auctions/output.css' %}" rel="stylesheet">
+
+</head>
+<body class="h-screen bg-gray-200">
+<header class="w-full mt-2">
+    <div class="flex flex-row justify-between items-center border-b-2 px-1 border-b-blue-800">
+        <div class="flex items-center justify-center">
+            <h1 class="flex items-center justify-center text-2xl text-blue-950 mr-5 sm:mr-7 md:mr-8 lg:mr-9">
+                Commerce
+            </h1>
+            <nav class="flex">
+                <ul class="flex flex-row gap-x-3 sm:gap-x-7 md:gap-x-8 lg:gap-x-9 list-none ">
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="{% if request.resolver_match.view_name == 'index' %}text-blue-700 {% else %} text-gray-700{% endif %} nav-item-a" href="{% url 'index' %}">Active Listings</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="{% if request.resolver_match.view_name == 'create-listing' %}text-blue-700 {% else %} text-gray-700{% endif %} nav-item-a"  href="{% url 'create-listing' %}">Create Listing</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="{% if request.resolver_match.view_name == 'watchlist' %}text-blue-700 {% else %} text-gray-700{% endif %} nav-item-a"  href="{% url 'watchlist' %}">Watchlist</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="{% if request.resolver_match.view_name == 'category' %}text-blue-700 {% else %} text-gray-700{% endif %} nav-item-a"  href="{% url 'category' %}">Categories</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="{% if request.resolver_match.view_name == 'logout' %}text-blue-700 {% else %} text-gray-700{% endif %} nav-item-a"  href="{% url 'logout' %}">Log Out</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="{% if request.resolver_match.view_name == 'login' %}text-blue-700 {% else %} text-gray-700{% endif %} nav-item-a"  href="{% url 'login' %}">Log In</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="{% if request.resolver_match.view_name == 'register' %}text-blue-700 {% else %} text-gray-700{% endif %} nav-item-a"  href="{% url 'register' %}">Register</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+
+        <div class="h-full flex items-center justify-center ml-3 mr-3">
+            <h2 class="text-1xl text-blue-950 self-center ">
+                {% if user.is_authenticated %}
+                    Signed in as <strong class="text-blue-900">{{ user.username }}</strong>
+                {% else %}
+                    Not signed in
+                {% endif %}
+            </h2>
+        </div>
+    </div>
+
+</header>
+
+{% block body %}
+{% endblock %}
+
+</body>
+</html>

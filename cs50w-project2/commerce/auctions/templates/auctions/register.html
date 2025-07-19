@@ -1,0 +1,68 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+    <main class="flex flex-col items-center justify-center h-[95vh]">
+
+        <div class="form-wh-2 form-register">
+            <div class="flex flex-row justify-center items-center">
+                <h1 class="text-xl ">Register</h1>
+            </div>
+            {% if message %}
+                <div class="flex flex-row items-start bg-[#feeded] text-[#b80505] rounded-md border-b-red-300 text-1xl w-auto p-1 mb-1">
+                    Register error
+                </div>
+            {% endif %}
+            <div class="flex flex-col items-center">
+                <form action="{% url 'login' %}" method="post">
+                    {% csrf_token %}
+                    <div class="flex flex-col gap-y-4 sm:gap-y-4">
+                        <div class="flex flex-row gap-x-4">
+                            <div class="flex flex-col justify-around gap-y-0.5">
+                                <label class="text-xs sm:text-lg" for="username">Username</label>
+                                <input id="username" autofocus class="form-item w-full max-w-sm" type="text"
+                                       name="username"
+                                       placeholder="Username">
+                            </div>
+                            <div class="flex flex-col justify-around gap-y-0.5">
+                                <label class="text-xs sm:text-lg" for="email">Email</label>
+                                <input id="email" class="form-item w-full max-w-sm" type="email" name="email"
+                                       placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="flex flex-row gap-x-4">
+                            <div class="flex flex-col justify-around gap-y-0.5">
+                                <label class="text-xs sm:text-lg" for="password1">Password</label>
+                                <input id="password1" autofocus class="form-item w-full max-w-sm text-xs sm:text-base"
+                                       type="password"
+                                       name="password1"
+                                       placeholder="Password">
+                            </div>
+                            <div class="flex flex-col justify-around gap-y-0.5">
+                                <label class="text-xs sm:text-lg" for="password2">Confirm Password</label>
+                                <input id="password2" class="form-item w-full max-w-sm text-xs sm:text-base"
+                                       type="password" name="password2"
+                                       placeholder="Confirm password">
+                            </div>
+                        </div>
+                        <input class="bg-blue-800 text-white  px-4 py-2 rounded hover:bg-blue-950 transition-colors duration-100
+                        ease-linear shadow-xs shadow-gray-600"
+                               type="submit" value="Register">
+                    </div>
+                </form>
+            </div>
+            <div class="flex items-center justify-around mt-4">
+                <h3 class="text-sm text-center underline">
+                    Already have an account?
+                </h3>
+                <a class="border-2 border-blue-600 rounded-md py-2 px-3 hover:bg-blue-950 hover:text-white
+                transition-colors duration-75 ease-linear text-xs sm:text-lg"
+                   href="{% url 'login' %}">Log in here.
+                </a>
+            </div>
+        </div>
+    </main>
+
+{% endblock %}
+
+

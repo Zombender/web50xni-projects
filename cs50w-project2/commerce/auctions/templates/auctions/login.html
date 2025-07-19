@@ -1,0 +1,51 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <main class="flex flex-col gap-y-10 items-center mt-15">
+
+        <div class="text-4xl text-shadow-sm text-shadow-gray-500 ">
+            Welcome Back!
+        </div>
+        <div class="form-wh form-login ">
+            <div class="flex flex-row items-start">
+                <h1 class="text-xl mb-4 ">Sign in to your account</h1>
+            </div>
+            {% if message %}
+                <div class="flex flex-row items-start bg-[#feeded] text-[#b80505] rounded-md border-b-red-300 text-1xl w-auto p-1 mb-1">
+                    Sign in error
+                </div>
+            {% endif %}
+            <div class="flex flex-col items-center">
+                <form action="{% url 'login' %}" method="post">
+                    {% csrf_token %}
+                    <div class="flex flex-col gap-y-4">
+                        <div class="flex flex-col gap-y-0.5">
+                            <label for="username">Username</label>
+                            <input id="username" autofocus class="form-item" type="text" name="username"
+                                   placeholder="Username">
+                        </div>
+                        <div class="flex flex-col gap-y-0.5 ">
+                            <label for="password">Password</label>
+                            <input id="password" class="form-item" type="password" name="password"
+                                   placeholder="Password">
+                        </div>
+                        <input class="bg-blue-800 text-white  px-4 py-2 rounded hover:bg-blue-950 transition-colors duration-100
+                            ease-linear shadow-xs shadow-gray-600"
+                               type="submit" value="Sign in">
+                    </div>
+                </form>
+            </div>
+            <div class="flex items-center justify-around mt-8">
+                <h3 class="text-sm text-center underline">
+                    Don't have an account?
+                </h3>
+                <a class="border-2 border-blue-600 rounded-md py-2 px-1 hover:bg-blue-950 hover:text-white
+                transition-colors duration-75 ease-linear text-xs sm:text-lg"
+                   href="{% url 'register' %}">Register here.
+                </a>
+            </div>
+        </div>
+    </main>
+
+
+{% endblock %}

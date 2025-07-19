@@ -1,0 +1,54 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <main class="flex flex-col items-center h-[90vh]  gap-y-6">
+        <h2 class="flex justify-center text-4xl font-bold  text-gray-900 mt-4 ">Create Listing</h2>
+
+        <form method="POST" enctype="multipart/form-data" class="flex flex-col gap-y-4 border-2 p-4">
+            {% csrf_token %}
+
+            <div class="form-create-container">
+                <label for="{{ form.title.id_for_label }}" class="form-create-label">Title</label>
+                <div class="form-create-input self-start">
+                    {{ form.title }}
+                </div>
+                {{ form.title.errors }}
+            </div>
+            <div class="form-create-container">
+                <label for="{{ form.description.id_for_label }}" class="form-create-label">Description</label>
+                <div class="form-create-input">
+                    {{ form.description }}
+                </div>
+
+                {{ form.description.errors }}
+            </div>
+            <div class="form-create-container">
+                <label for="{{ form.category.id_for_label }}" class="form-create-label">Category</label>
+                <div class="form-create-input self-start">
+                    {{ form.category }}
+                </div>
+
+                {{ form.category.errors }}
+            </div>
+            <div class="form-create-container">
+                <label for="{{ form.starting_bid.id_for_label }}" class="form-create-label">Starting bid</label>
+                <div class="form-create-input self-start">
+                    {{ form.starting_bid }}
+                </div>
+
+                {{ form.starting_bid.errors }}
+            </div>
+            <div class="form-create-container">
+                <label for="{{ form.image.id_for_label }}" class="form-create-label">Upload image</label>
+                <div class="form-create-input self-start" >
+                    {{ form.image }}
+                </div>
+                {{ form.image.errors }}
+            </div>
+
+            <button type="submit" class="bg-blue-400 hover:bg-blue-700 hover:text-white hover:underline p-2 self-center border-0.5 border-gray-700 shadow-xs shadow-gray-400 transition-colors duration-100 ease-in-out">Save Listing</button>
+        </form>
+
+    </main>
+
+{% endblock %}

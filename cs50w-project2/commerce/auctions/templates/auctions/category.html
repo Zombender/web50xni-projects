@@ -1,0 +1,19 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <main class="flex flex-col h-[90vh]  gap-y-6">
+        <h2 class="flex justify-center text-4xl font-bold  text-gray-900 mt-4 ">Categories</h2>
+        <ul class="flex flex-col justify-start gap-y-4 list-none">
+            {% for category in categories %}
+                <li class="self-center border-0.5 p-2 bg-blue-400 hover:bg-blue-900 hover:underline hover:text-white transition-colors duration-100 ease-in-out">
+                    <a href="{% url 'listing-category' category.id %}">{{ category.name }}</a
+                </li>
+        {% endfor %}
+        </ul>
+
+    </main>
+
+
+
+
+{% endblock %}

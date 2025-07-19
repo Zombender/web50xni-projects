@@ -1,0 +1,14 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <main class="flex flex-col h-[90vh]  gap-y-6">
+        <h2 class="flex justify-center text-4xl font-bold text-gray-900 mt-4">
+            Listings in <strong class="text-red-700 ml-2"> {{ category }}</strong>
+        </h2>
+        <div class="grid grid-rows-3 grid-cols-3 gap-8 px-3 py-1">
+            {% for listing in listings %}
+                {% include 'auctions/listing_card.html' %}
+            {% endfor %}
+        </div>
+    </main>
+{% endblock %}
