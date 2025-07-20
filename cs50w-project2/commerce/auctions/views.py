@@ -162,6 +162,7 @@ class CreateBidView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 
     def handle_no_permission(self):
         return redirect('index')
+
     def form_valid(self, form):
         form.instance.user = self.request.user
         listing_id = self.kwargs['pk']
